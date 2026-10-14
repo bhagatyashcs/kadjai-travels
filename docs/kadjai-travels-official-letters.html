@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kadjai Travels — Official Project Letters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #475569;
+      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+      color: #1e293b;
+      padding: 24px 0 60px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    /* Screen Toolbar */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #0f172a;
+      color: #fff;
+      padding: 12px 28px;
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .toolbar-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .toolbar-title span {
+      color: #38bdf8;
+      font-weight: 500;
+      margin-left: 8px;
+      font-size: 12px;
+    }
+    .btn-print {
+      background: #009bb4;
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+    .btn-print:hover {
+      background: #008298;
+    }
+
+    /* A4 Sheet Dimensions */
+    .a4-sheet {
+      background: #ffffff;
+      width: 210mm;
+      height: 297mm;
+      min-height: 297mm;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      page-break-inside: avoid;
+    }
+
+    /* Top Header SVG Graphic Container */
+    .header-banner {
+      width: 100%;
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Bottom Decorative Graphic Container */
+    .footer-graphic {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 260px;
+      height: 140px;
+      pointer-events: none;
+    }
+
+    /* Letter Body Content Area */
+    .letter-content {
+      padding: 0 24mm 15mm 24mm;
+      font-size: 10pt;
+      line-height: 1.55;
+      color: #334155;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      z-index: 10;
+    }
+
+    .brand-headline {
+      font-size: 12pt;
+      font-weight: 800;
+      color: #009bb4;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .contact-meta {
+      font-size: 8.5pt;
+      color: #475569;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .subject-line {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 12px;
+      font-size: 9.5pt;
+    }
+
+    .salutation {
+      color: #0f172a;
+      margin-bottom: 10px;
+      font-size: 9.5pt;
+    }
+
+    .letter-body p {
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    .module-list {
+      margin: 8px 0 10px 0;
+    }
+    .module-item {
+      margin-bottom: 6px;
+      text-align: justify;
+    }
+    .module-title {
+      font-weight: 700;
+      color: #0f172a;
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .section-title {
+      font-weight: 800;
+      color: #0f172a;
+      margin-top: 8px;
+      margin-bottom: 4px;
+      font-size: 9.5pt;
+    }
+
+    .closing-block {
+      margin-top: 14px;
+    }
+    .sign-line {
+      width: 190px;
+      border-top: 1.2pt solid #475569;
+      margin: 32px 0 6px 0;
+    }
+    .signer-name {
+      font-weight: 800;
+      color: #0f172a;
+      font-size: 9.5pt;
+    }
+    .signer-title {
+      color: #64748b;
+      font-size: 8.5pt;
+      line-height: 1.35;
+    }
+
+    @media print {
+      body {
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      .toolbar {
+        display: none !important;
+      }
+      .a4-sheet {
+        box-shadow: none !important;
+        margin: 0 !important;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-title">
+      Kadjai Travels Official Project Letters <span>(Letter 1, Letter 2 & Letter 3)</span>
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨️ Print / Save to PDF</button>
+  </div>
+
+  <!-- =========================================================
+       LETTER 1: OFFER LETTER FOR WEBSITE & TVMS PROJECT
+  ========================================================= -->
+  <div class="a4-sheet" id="letter-1">
+    
+    <!-- Top Header Banner SVG (Exact Kadjai Travels design) -->
+    <div class="header-banner">
+      <svg width="100%" height="120" viewBox="0 0 794 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cream Top-Left Swoosh -->
+        <path d="M 0,0 L 220,0 C 170,45 80,75 0,90 Z" fill="#FCE5C2"/>
+        <!-- Teal Underlayer Curve -->
+        <path d="M 0,85 C 90,70 180,40 250,0 L 794,0 L 794,110 C 650,118 400,120 0,105 Z" fill="#008EA8"/>
+        <!-- Deep Navy Main Banner Block -->
+        <path d="M 0,0 L 794,0 L 794,104 C 640,112 400,116 0,98 Z" fill="#0D233A"/>
+        <!-- Bottom Teal Accent Border Line -->
+        <path d="M 0,98 C 400,116 640,112 794,104 L 794,108 C 640,116 400,120 0,102 Z" fill="#00A7BA"/>
+
+        <!-- Center Brand Emblem: Teal Squircle with Car Icon -->
+        <g transform="translate(230, 26)">
+          <rect x="0" y="0" width="44" height="42" rx="10" fill="#009BB4"/>
+          <!-- Clean White Solid Car Silhouette -->
+          <path d="M 10,25 C 9.5,25 9,24.5 9,23.8 L 9,20 C 9,18 10,16.5 11.5,16.2 L 13.8,11.2 C 14.3,10.2 15.2,9.5 16.3,9.5 L 27.7,9.5 C 28.8,9.5 29.7,10.2 30.2,11.2 L 32.5,16.2 C 34,16.5 35,18 35,20 L 35,23.8 C 35,24.5 34.5,25 34,25 L 33,25 C 33,26.5 31.8,27.5 30.2,27.5 C 28.8,27.5 27.5,26.5 27.5,25 L 16.5,25 C 16.5,26.5 15.2,27.5 13.8,27.5 C 12.2,27.5 11,26.5 11,25 Z M 13.5,20 C 14.3,20 15,19.3 15,18.5 C 15,17.7 14.3,17 13.5,17 C 12.7,17 12,17.7 12,18.5 C 12,19.3 12.7,20 13.5,20 Z M 30.5,20 C 31.3,20 32,19.3 32,18.5 C 32,17.7 31.3,17 30.5,17 C 29.7,17 29,17.7 29,18.5 C 29,19.3 29.7,20 30.5,20 Z M 14.2,15 L 29.8,15 L 28,11.5 L 16,11.5 Z" fill="#FFFFFF"/>
+        </g>
+
+        <!-- Brand Text: Golden Yellow "KADJAI TRAVELS" -->
+        <text x="288" y="52" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="24" font-weight="900" fill="#E8A838" letter-spacing="1.2">KADJAI TRAVELS</text>
+        <!-- Subtitle: Cyan "TOURIST TRANSPORT • TRAVEL SERVICES" -->
+        <text x="290" y="69" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#4CD3E3" letter-spacing="3.2">TOURIST TRANSPORT • TRAVEL SERVICES</text>
+      </svg>
+    </div>
+
+    <!-- Letter Body -->
+    <div class="letter-content">
+      <div>
+        <div class="brand-headline">KADJAI TRAVELS</div>
+        <div class="contact-meta">
+          Email: Kadjaitravels@gmail.com<br>
+          Contact: +91 86898 04096<br>
+          Date: 14 October 2026
+        </div>
+
+        <div class="subject-line">
+          Subject: Offer Letter for Website & Travel Management System Development Project
+        </div>
+
+        <div class="salutation">
+          Dear Mr. Yash Ramasre Bhagat,
+        </div>
+
+        <div class="letter-body">
+          <p>
+            Kadjai Travels is pleased to engage you for the design and development of its official website and travel management web application. The project is intended to improve the business’s digital presence and organize customer travel enquiries and related operational information.
+          </p>
+
+          <p>
+            The proposed scope includes a responsive business website, travel service information, a fare-estimate calculator, booking enquiry submission, and an owner-facing interface for reviewing and managing booking information, subject to the features implemented and approved by the proprietor.
+          </p>
+
+          <p>
+            You are expected to carry out the work professionally, protect business and customer information, and demonstrate the working application to the proprietor for review. Project deliverables and any changes to scope should be mutually discussed and agreed.
+          </p>
+
+          <p>
+            We look forward to reviewing the project and appreciate your contribution towards the digital development of Kadjai Travels.
+          </p>
+        </div>
+
+        <div class="closing-block">
+          <div style="font-size: 9.5pt; color: #0f172a;">Sincerely,</div>
+          <div class="sign-line"></div>
+          <div class="signer-name">Ramasre Bhagat</div>
+          <div class="signer-title">Proprietor<br>Kadjai Travels</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Right Decorative Graphics -->
+    <div class="footer-graphic">
+      <svg width="260" height="140" viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+        <!-- Deep Navy Outer Swoosh -->
+        <path d="M 40,140 C 90,80 160,30 260,0 L 260,140 Z" fill="#0D233A"/>
+        <!-- Teal Middle Swoosh -->
+        <path d="M 80,140 C 130,90 190,45 260,18 L 260,38 C 195,65 140,105 100,140 Z" fill="#009BB4"/>
+        <!-- Golden Amber Thin Swoosh Accent -->
+        <path d="M 120,140 C 160,105 210,65 260,45 L 260,54 C 215,72 170,110 135,140 Z" fill="#E8A838"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       LETTER 2: PROJECT COMPLETION LETTER (MATCHING REFERENCE 2)
+  ========================================================= -->
+  <div class="a4-sheet" id="letter-2">
+    
+    <!-- Top Header Banner SVG -->
+    <div class="header-banner">
+      <svg width="100%" height="120" viewBox="0 0 794 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,0 L 220,0 C 170,45 80,75 0,90 Z" fill="#FCE5C2"/>
+        <path d="M 0,85 C 90,70 180,40 250,0 L 794,0 L 794,110 C 650,118 400,120 0,105 Z" fill="#008EA8"/>
+        <path d="M 0,0 L 794,0 L 794,104 C 640,112 400,116 0,98 Z" fill="#0D233A"/>
+        <path d="M 0,98 C 400,116 640,112 794,104 L 794,108 C 640,116 400,120 0,102 Z" fill="#00A7BA"/>
+
+        <g transform="translate(230, 26)">
+          <rect x="0" y="0" width="44" height="42" rx="10" fill="#009BB4"/>
+          <path d="M 10,25 C 9.5,25 9,24.5 9,23.8 L 9,20 C 9,18 10,16.5 11.5,16.2 L 13.8,11.2 C 14.3,10.2 15.2,9.5 16.3,9.5 L 27.7,9.5 C 28.8,9.5 29.7,10.2 30.2,11.2 L 32.5,16.2 C 34,16.5 35,18 35,20 L 35,23.8 C 35,24.5 34.5,25 34,25 L 33,25 C 33,26.5 31.8,27.5 30.2,27.5 C 28.8,27.5 27.5,26.5 27.5,25 L 16.5,25 C 16.5,26.5 15.2,27.5 13.8,27.5 C 12.2,27.5 11,26.5 11,25 Z M 13.5,20 C 14.3,20 15,19.3 15,18.5 C 15,17.7 14.3,17 13.5,17 C 12.7,17 12,17.7 12,18.5 C 12,19.3 12.7,20 13.5,20 Z M 30.5,20 C 31.3,20 32,19.3 32,18.5 C 32,17.7 31.3,17 30.5,17 C 29.7,17 29,17.7 29,18.5 C 29,19.3 29.7,20 30.5,20 Z M 14.2,15 L 29.8,15 L 28,11.5 L 16,11.5 Z" fill="#FFFFFF"/>
+        </g>
+
+        <text x="288" y="52" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="24" font-weight="900" fill="#E8A838" letter-spacing="1.2">KADJAI TRAVELS</text>
+        <text x="290" y="69" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#4CD3E3" letter-spacing="3.2">TOURIST TRANSPORT • TRAVEL SERVICES</text>
+      </svg>
+    </div>
+
+    <!-- Letter Body -->
+    <div class="letter-content">
+      <div>
+        <div class="brand-headline">KADJAI TRAVELS</div>
+        <div class="contact-meta">
+          Email: Kadjaitravels@gmail.com<br>
+          Contact: +91 86898 04096<br>
+          Date: 14 October 2026
+        </div>
+
+        <div class="subject-line">
+          Subject: Project Completion Letter – Travel Management System
+        </div>
+
+        <div style="font-size: 9.5pt; color: #0f172a; margin-bottom: 2px;">To,</div>
+        <div style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin-bottom: 12px;">Mr. Yash Ramasre Bhagat</div>
+
+        <div class="salutation">
+          Dear Mr. Bhagat,
+        </div>
+
+        <div class="letter-body">
+          <p>
+            This is to certify that you have successfully completed the project for the design and development of the official web application for Kadjai Travels, a tourist transport and travel service business dedicated to providing comprehensive outstation journeys, airport transfers, and customer travel services.
+          </p>
+
+          <p>
+            The project involved designing and developing the web platform, implementing the required features and functionalities, integrating zero-login live vehicle trip tracking, route-based transparent fare estimation, automated duty slip billing, updating fleet service content, and ensuring proper functioning across different devices.
+          </p>
+
+          <p>
+            We appreciate your efforts and contribution towards the successful completion of this project. We wish you continued success in your future professional endeavours.
+          </p>
+        </div>
+
+        <div class="closing-block" style="margin-top: 24px;">
+          <div style="font-size: 9.5pt; color: #0f172a;">Sincerely,</div>
+          <div class="sign-line"></div>
+          <div class="signer-name">Ramasre Bhagat</div>
+          <div class="signer-title">Proprietor<br>Kadjai Travels</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Right Decorative Graphics -->
+    <div class="footer-graphic">
+      <svg width="260" height="140" viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 40,140 C 90,80 160,30 260,0 L 260,140 Z" fill="#0D233A"/>
+        <path d="M 80,140 C 130,90 190,45 260,18 L 260,38 C 195,65 140,105 100,140 Z" fill="#009BB4"/>
+        <path d="M 120,140 C 160,105 210,65 260,45 L 260,54 C 215,72 170,110 135,140 Z" fill="#E8A838"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       LETTER 3: PROJECT COMPLETION & DEPLOYMENT CERTIFICATE (HOD)
+  ========================================================= -->
+  <div class="a4-sheet" id="letter-3">
+    
+    <!-- Top Header Banner SVG -->
+    <div class="header-banner">
+      <svg width="100%" height="120" viewBox="0 0 794 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,0 L 220,0 C 170,45 80,75 0,90 Z" fill="#FCE5C2"/>
+        <path d="M 0,85 C 90,70 180,40 250,0 L 794,0 L 794,110 C 650,118 400,120 0,105 Z" fill="#008EA8"/>
+        <path d="M 0,0 L 794,0 L 794,104 C 640,112 400,116 0,98 Z" fill="#0D233A"/>
+        <path d="M 0,98 C 400,116 640,112 794,104 L 794,108 C 640,116 400,120 0,102 Z" fill="#00A7BA"/>
+
+        <g transform="translate(230, 26)">
+          <rect x="0" y="0" width="44" height="42" rx="10" fill="#009BB4"/>
+          <path d="M 10,25 C 9.5,25 9,24.5 9,23.8 L 9,20 C 9,18 10,16.5 11.5,16.2 L 13.8,11.2 C 14.3,10.2 15.2,9.5 16.3,9.5 L 27.7,9.5 C 28.8,9.5 29.7,10.2 30.2,11.2 L 32.5,16.2 C 34,16.5 35,18 35,20 L 35,23.8 C 35,24.5 34.5,25 34,25 L 33,25 C 33,26.5 31.8,27.5 30.2,27.5 C 28.8,27.5 27.5,26.5 27.5,25 L 16.5,25 C 16.5,26.5 15.2,27.5 13.8,27.5 C 12.2,27.5 11,26.5 11,25 Z M 13.5,20 C 14.3,20 15,19.3 15,18.5 C 15,17.7 14.3,17 13.5,17 C 12.7,17 12,17.7 12,18.5 C 12,19.3 12.7,20 13.5,20 Z M 30.5,20 C 31.3,20 32,19.3 32,18.5 C 32,17.7 31.3,17 30.5,17 C 29.7,17 29,17.7 29,18.5 C 29,19.3 29.7,20 30.5,20 Z M 14.2,15 L 29.8,15 L 28,11.5 L 16,11.5 Z" fill="#FFFFFF"/>
+        </g>
+
+        <text x="288" y="52" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="24" font-weight="900" fill="#E8A838" letter-spacing="1.2">KADJAI TRAVELS</text>
+        <text x="290" y="69" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#4CD3E3" letter-spacing="3.2">TOURIST TRANSPORT • TRAVEL SERVICES</text>
+      </svg>
+    </div>
+
+    <!-- Letter Body -->
+    <div class="letter-content" style="padding-top: 0; font-size: 8.8pt; line-height: 1.45;">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+          <div style="font-size: 8.5pt; color: #334155; line-height: 1.35;">
+            <strong>To:</strong><br>
+            The Head of Department,<br>
+            Department of Computer Science (B.Sc. CS),<br>
+            Sheth L.U.J. & Sir M.V. College of Arts, Science and Commerce,<br>
+            Mumbai, Maharashtra.
+          </div>
+          <div style="text-align: right; font-size: 8.5pt; color: #334155;">
+            <strong>Date:</strong> 14 October 2026
+          </div>
+        </div>
+
+        <div style="font-size: 9pt; margin-bottom: 4px; color: #0f172a;"><strong>Respected Sir/Madam,</strong></div>
+
+        <div style="font-weight: 800; color: #0f172a; margin-bottom: 8px; font-size: 9.2pt;">
+          Subject: Project Completion & Deployment Certificate
+        </div>
+
+        <p style="margin-bottom: 8px; text-align: justify;">
+          This is to certify that <strong>Mr. Yash Ramasre Bhagat</strong>, Roll No.: <strong>T072</strong>, Class: <strong>TYBSc Computer Science</strong>, Sheth L.U.J. & Sir M.V. College of Arts, Science and Commerce, Mumbai, has successfully designed and developed the official website and management system for <strong>Kadjai Travels</strong>, a tourist transport and travel service business, as part of his academic project.
+        </p>
+
+        <div class="section-title">Project Scope & Implemented Modules</div>
+        <div class="module-list">
+          <div class="module-item">
+            <span class="module-title">1. Tourist Transport & Booking Operations Desk:</span>
+            The web platform digitizes tourist travel requests, review progression, vehicle and commercial driver allocation, and operational trip status tracking.
+          </div>
+          <div class="module-item">
+            <span class="module-title">2. Zero-Login Live Vehicle Trip Tracking:</span>
+            The platform empowers customers to track real-time trip status, allocated driver details, and vehicle license plate using only their booking reference ID and contact number.
+          </div>
+          <div class="module-item">
+            <span class="module-title">3. Transparent Fare Estimation Engine:</span>
+            The system maintains automated transparent tariff calculations across One-Way, Round Trip, Local Rental, and Airport Transfer packages, enforcing minimum daily mileage, driver allowances, and Fastag toll estimates.
+          </div>
+          <div class="module-item">
+            <span class="module-title">4. Automated Duty Slip Billing & Meter Logging:</span>
+            The platform automatically logs vehicle starting and closing odometer readings, calculates billable distance, and generates printable A4 duty slips with itemized cost breakdowns.
+          </div>
+          <div class="module-item">
+            <span class="module-title">5. Responsive Web Interface & Customer Portal:</span>
+            The application is designed to provide a consistent, responsive experience across desktop, tablet, and mobile devices for customers and travel operations.
+          </div>
+        </div>
+
+        <div class="section-title">Project Benefits</div>
+        <p style="margin-bottom: 6px; text-align: justify;">
+          The system modernizes Kadjai Travels’ travel operations, provides real-time fare transparency for customers, eliminates manual paper trip sheets, and streamlines booking management through a centralized digital platform.
+        </p>
+
+        <p style="margin-bottom: 6px; text-align: justify;">
+          During the development of this project, Mr. Yash Ramasre Bhagat applied technical knowledge, problem-solving skills, and full-stack web development concepts (React, Express, SQLite) to develop a digital solution for the travel service.
+        </p>
+
+        <p style="margin-bottom: 10px; text-align: justify;">
+          We appreciate his efforts and wish him success in his future academic and professional career.
+        </p>
+
+        <div class="closing-block" style="margin-top: 6px;">
+          <div style="font-size: 8.5pt; font-weight: 700; color: #009bb4;">For KADJAI TRAVELS,</div>
+          <div class="sign-line" style="margin: 22px 0 4px 0;"></div>
+          <div class="signer-name" style="font-size: 9pt;">Ramasre Bhagat</div>
+          <div class="signer-title" style="font-size: 8pt;">
+            Proprietor<br>
+            Email: Kadjaitravels@gmail.com<br>
+            Contact: +91 86898 04096
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Right Decorative Graphics -->
+    <div class="footer-graphic">
+      <svg width="260" height="140" viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 40,140 C 90,80 160,30 260,0 L 260,140 Z" fill="#0D233A"/>
+        <path d="M 80,140 C 130,90 190,45 260,18 L 260,38 C 195,65 140,105 100,140 Z" fill="#009BB4"/>
+        <path d="M 120,140 C 160,105 210,65 260,45 L 260,54 C 215,72 170,110 135,140 Z" fill="#E8A838"/>
+      </svg>
+    </div>
+
+  </div>
+
+</body>
+</html>

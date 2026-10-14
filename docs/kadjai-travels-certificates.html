@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kadjai Travels — Academic Certificates & Company Letters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #525659;
+      font-family: 'Crimson Pro', Georgia, serif;
+      color: #111111;
+      padding: 24px 0 60px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* Screen Toolbar */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #0f172a;
+      color: #fff;
+      padding: 10px 24px;
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .btn-print {
+      background: #eab308;
+      color: #0f172a;
+      font-weight: 800;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* A4 Certificate Sheets */
+    .cert-page {
+      background: #ffffff;
+      width: 210mm;
+      height: 297mm;
+      min-height: 297mm;
+      padding: 20mm 22mm;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      border: 1px solid #d1d5db;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      page-break-inside: avoid;
+    }
+
+    .cert-frame {
+      position: absolute;
+      top: 10mm;
+      left: 12mm;
+      right: 12mm;
+      bottom: 10mm;
+      border: 2pt solid #0f172a;
+      pointer-events: none;
+    }
+    .cert-frame::after {
+      content: '';
+      position: absolute;
+      top: 2mm;
+      left: 2mm;
+      right: 2mm;
+      bottom: 2mm;
+      border: 0.75pt solid #c59b27;
+    }
+
+    /* College Letterhead */
+    .college-header {
+      text-align: center;
+      border-bottom: 1.5pt solid #1e293b;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    .college-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 15pt;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.5px;
+    }
+    .college-header p {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9pt;
+      color: #475569;
+      margin-top: 2px;
+    }
+
+    /* Company Letterhead */
+    .company-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2pt solid #c59b27;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .company-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20pt;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #0f172a;
+    }
+    .company-brand span {
+      color: #eab308;
+    }
+    .company-contacts {
+      text-align: right;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 8.5pt;
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    h2.cert-title {
+      font-family: 'Cinzel', serif;
+      font-size: 18pt;
+      font-weight: 800;
+      text-align: center;
+      color: #0f172a;
+      letter-spacing: 2px;
+      margin: 12px 0 20px 0;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+
+    .cert-body {
+      font-size: 11.5pt;
+      line-height: 1.75;
+      text-align: justify;
+      color: #1e293b;
+    }
+    .cert-body p {
+      margin-bottom: 14px;
+    }
+
+    .sign-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30mm;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f172a;
+      text-align: center;
+    }
+    .sign-box {
+      width: 28%;
+      border-top: 1pt solid #0f172a;
+      padding-top: 6px;
+    }
+
+    @media print {
+      body {
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      .toolbar {
+        display: none !important;
+      }
+      .cert-page {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Toolbar -->
+  <div class="toolbar">
+    <div>
+      <strong>Kadjai Travels Project Certificates</strong>
+      <span style="color: #94a3b8; font-size: 12px; margin-left: 8px;">College Certificate & Company Completion Letter</span>
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨️ Print Certificates to PDF</button>
+  </div>
+
+  <!-- =========================================================
+       PAGE 1: COLLEGE PROJECT APPROVAL CERTIFICATE
+  ========================================================= -->
+  <div class="cert-page" id="college-certificate">
+    <div class="cert-frame"></div>
+
+    <div>
+      <div class="college-header">
+        <h1>SHETH L.U.J. COLLEGE OF ARTS & SIR M.V. COLLEGE OF SCIENCE & COMMERCE</h1>
+        <p>Laxmi Sadan, Dr. Radhakrishnan Marg, Andheri (East), Mumbai – 400 069</p>
+        <p style="font-weight: 700; color: #0f172a; margin-top: 4px;">DEPARTMENT OF COMPUTER SCIENCE</p>
+      </div>
+
+      <h2 class="cert-title">CERTIFICATE</h2>
+
+      <div class="cert-body">
+        <p>
+          This is to certify that the project entitled <strong>“Kadjai Travels: Tourist Vehicle Management & Customer Booking System (TVMS)”</strong> 
+          is a bonafide work carried out by <strong>Mr. Yash Ramasre Bhagat</strong> (Roll No: <strong>T072</strong>) in partial fulfilment 
+          for the award of the degree of <strong>Bachelor of Science in Computer Science (Semester V)</strong> from the 
+          <strong>University of Mumbai</strong> during the academic year <strong>2026–2027</strong>.
+        </p>
+
+        <p>
+          The project work has been carried out under our supervision and guidance, and the software system has been demonstrated, verified, 
+          and evaluated for technical competence, architectural rigor, and functional accuracy.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10pt; margin-bottom: 25mm;">
+        <p><strong>Place:</strong> Mumbai</p>
+        <p><strong>Date:</strong> _____ / _____ / 2026</p>
+      </div>
+
+      <div class="sign-row">
+        <div class="sign-box">
+          <p>Prof. Jyoti Chauhan</p>
+          <span style="font-size: 8pt; font-weight: 500; color: #475569;">Project Guide</span>
+        </div>
+        <div class="sign-box">
+          <p>Head of Department</p>
+          <span style="font-size: 8pt; font-weight: 500; color: #475569;">Dept. of Computer Science</span>
+        </div>
+        <div class="sign-box">
+          <p>Principal</p>
+          <span style="font-size: 8pt; font-weight: 500; color: #475569;">Sheth L.U.J. & Sir M.V. College</span>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-around; margin-top: 15mm;">
+        <div style="width: 35%; border-top: 1pt solid #0f172a; text-align: center; padding-top: 4px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9pt; font-weight: 700;">
+          External Examiner
+        </div>
+        <div style="width: 35%; border-top: 1pt solid #0f172a; text-align: center; padding-top: 4px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9pt; font-weight: 700;">
+          College Seal / Stamp
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PAGE 2: KADJAI TRAVELS COMPANY PROJECT COMPLETION LETTER
+  ========================================================= -->
+  <div class="cert-page" id="company-completion-letter">
+    <div class="cert-frame"></div>
+
+    <div>
+      <div class="company-header">
+        <div>
+          <div class="company-brand">KADJAI<span>TRAVELS</span></div>
+          <p style="font-size: 9pt; font-weight: 700; color: #475569; font-family: 'Plus Jakarta Sans', sans-serif;">
+            Tourist Car & Outstation Travel Services
+          </p>
+        </div>
+        <div class="company-contacts">
+          <p>📍 Mumbai, Maharashtra, India</p>
+          <p>📞 +91 86898 04096 / 918689804096</p>
+          <p>✉️ kadjaitravels@gmail.com</p>
+          <p>🌐 https://kadjai-travels.vercel.app</p>
+        </div>
+      </div>
+
+      <div style="text-align: right; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9.5pt; color: #334155; margin-bottom: 12px;">
+        <strong>Date:</strong> 08th October 2026<br>
+        <strong>Ref:</strong> KT/PROJ/2026/088
+      </div>
+
+      <h2 class="cert-title" style="font-size: 15pt; text-decoration: none; border-bottom: 1pt solid #0f172a; padding-bottom: 6px;">
+        PROJECT COMPLETION CERTIFICATE
+      </h2>
+
+      <div class="cert-body">
+        <p style="font-weight: 700; color: #0f172a;">
+          TO WHOMSOEVER IT MAY CONCERN
+        </p>
+
+        <p>
+          This is to certify that <strong>Mr. Yash Ramasre Bhagat</strong> (Roll No: <strong>T072</strong>), a student of 
+          <strong>B.Sc. in Computer Science</strong> at <strong>Sheth L.U.J. College of Arts & Sir M.V. College of Science & Commerce, Mumbai</strong>, 
+          has successfully completed the industrial project development titled:
+        </p>
+
+        <p style="text-align: center; font-weight: 800; font-size: 13pt; color: #0f172a; background: #f8fafc; padding: 10px; border-radius: 6px; border: 1pt solid #e2e8f0;">
+          “KADJAI TRAVELS: TOURIST VEHICLE MANAGEMENT & CUSTOMER BOOKING SYSTEM (TVMS)”
+        </p>
+
+        <p>
+          During the project duration from <strong>01st August 2026 to 08th October 2026</strong>, he demonstrated outstanding technical capability, 
+          dedication, and problem-solving skills. He successfully analyzed our tourist vehicle workflow, digitized our booking and driver assignment operations, 
+          automated our route-based Fastag toll and driver Bata computations (₹20/km outstation with 300 km/day minimums, ₹15/km local city rentals), 
+          and implemented an official print-ready A4 duty slip billing engine.
+        </p>
+
+        <p>
+          The system was tested in our Mumbai operational environment, and the application has been deployed live on the cloud. 
+          His conduct during this engagement was professional and exemplary.
+        </p>
+
+        <p>
+          We wish him every success in his academic pursuits and future professional career.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 25mm;">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9.5pt;">
+          <p><strong>Place:</strong> Mumbai</p>
+          <p><strong>Seal:</strong> Kadjai Travels Mumbai</p>
+        </div>
+
+        <div style="text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9.5pt; width: 45%;">
+          <div style="border-top: 1.5pt solid #0f172a; padding-top: 6px; font-weight: 800;">
+            RAMASRE BHAGAT
+          </div>
+          <p style="font-size: 8.5pt; color: #0f172a; font-weight: 700; margin-top: 2px;">Proprietor, Kadjai Travels</p>
+          <p style="font-size: 8pt; color: #64748b; margin-top: 1px;">Tourist Vehicle Operations, Mumbai</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

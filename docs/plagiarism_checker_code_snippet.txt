@@ -1,0 +1,256 @@
+/**
+ * ============================================================================
+ * PROJECT: KADJAI TRAVELS - TOURIST VEHICLE MANAGEMENT SYSTEM (TVMS)
+ * MODULE: CORE FARE COMPUTATION & DISPATCH ODOMETER ENGINE
+ * CANDIDATE: YASH RAMASRE BHAGAT (ROLL NO: T072)
+ * PROPRIETOR: RAMASRE BHAGAT
+ * INSTITUTION: SHETH L.U.J. COLLEGE OF ARTS & SIR M.V. COLLEGE, MUMBAI
+ * ============================================================================
+ */
+
+export interface PricingPolicy {
+  vehicleModel: string;
+  seatingCapacity: number;
+  outstationRatePerKm: number;
+  outstationMinKmPerDay: number;
+  outstationDriverBataPerDay: number;
+  oneWayRatePerKm: number;
+  oneWayMinKm: number;
+  oneWayDriverBata: number;
+  localRatePerKm: number;
+  localPackages: Record<string, { label: string; hours: number; km: number; basePrice: number }>;
+  airportBasePrice: number;
+  airportParkingCharge: number;
+  nightAllowance: number;
+}
+
+export const KADJAI_PRICING_POLICY: PricingPolicy = {
+  vehicleModel: 'Maruti Suzuki Ertiga 6+1 AC Luxury',
+  seatingCapacity: 7,
+  outstationRatePerKm: 20,
+  outstationMinKmPerDay: 300,
+  outstationDriverBataPerDay: 400,
+  oneWayRatePerKm: 20,
+  oneWayMinKm: 150,
+  oneWayDriverBata: 400,
+  localRatePerKm: 15,
+  localPackages: {
+    '8h_80km': { label: '8 Hours / 80 KM', hours: 8, km: 80, basePrice: 2200 },
+    '12h_120km': { label: '12 Hours / 120 KM', hours: 12, km: 120, basePrice: 3200 },
+  },
+  airportBasePrice: 1800,
+  airportParkingCharge: 180,
+  nightAllowance: 300,
+};
+
+export interface BookingFareCalculationInput {
+  vehicleModelId?: string;
+  tripType: 'Round Trip' | 'One Way' | 'Local Rental' | 'Airport Transfer';
+  daysCount?: number;
+  startKm?: number | null;
+  endKm?: number | null;
+  estKm?: number;
+  tollCharges?: number;
+  parkingCharges?: number;
+  nightCharges?: number;
+  discount?: number;
+  advancePaid?: number;
+  localPackage?: '8h_80km' | '12h_120km';
+  applyGst?: boolean;
+}
+
+export interface ItemizedFareBreakdown {
+  tripType: string;
+  ratePerKm: number;
+  minKmApplied: number;
+  billableKm: number;
+  baseFare: number;
+  driverBataTotal: number;
+  tollCharges: number;
+  parkingCharges: number;
+  nightCharges: number;
+  subtotal: number;
+  gstTax: number;
+  totalFare: number;
+  advancePaid: number;
+  balanceDue: number;
+  paymentStatus: 'Paid' | 'Partial' | 'Pending';
+}
+
+/**
+ * Decimal-Safe Fare Computation Engine for Tourist Vehicles
+ * Enforces verified tariff: Outstation ₹20/km (300km/day min), Local ₹15/km,
+ * Driver Bata ₹400/day, and mandatory Fastag toll integration.
+ */
+export const calculateTripFare = (input: BookingFareCalculationInput): ItemizedFareBreakdown => {
+  const policy = KADJAI_PRICING_POLICY;
+  const tripType = input.tripType || 'Round Trip';
+  const isRoundTrip = tripType === 'Round Trip';
+  const isOneWay = tripType === 'One Way';
+  const isLocal = tripType === 'Local Rental';
+  const isAirport = tripType === 'Airport Transfer';
+
+  const days = Math.max(1, Math.round(Number(input.daysCount) || 1));
+  
+  // Odometer Actual Mileage Computation
+  let actualOdometerKm: number | null = null;
+  if (input.startKm !== null && input.endKm !== null && input.startKm !== undefined && input.endKm !== undefined) {
+    if (Number(input.endKm) >= Number(input.startKm)) {
+      actualOdometerKm = Math.round(Number(input.endKm) - Number(input.startKm));
+    }
+  }
+
+  const distanceToEvaluate = actualOdometerKm !== null 
+    ? actualOdometerKm 
+    : Math.max(0, Math.round(Number(input.estKm) || 0));
+
+  let ratePerKm = policy.outstationRatePerKm;
+  let minKmApplied = 0;
+  let billableKm = distanceToEvaluate;
+  let baseFare = 0;
+  let driverBataTotal = 0;
+
+  if (isLocal) {
+    const pkg = policy.localPackages[input.localPackage || '8h_80km'] || policy.localPackages['8h_80km'];
+    ratePerKm = policy.localRatePerKm;
+    minKmApplied = pkg.km;
+    const extraDistance = Math.max(0, distanceToEvaluate - pkg.km);
+    billableKm = Math.max(pkg.km, distanceToEvaluate);
+    baseFare = Math.round(pkg.basePrice + (extraDistance * ratePerKm));
+    driverBataTotal = 0; // Local city driver duty included in package
+  } else if (isAirport) {
+    ratePerKm = policy.localRatePerKm;
+    minKmApplied = 45;
+    billableKm = Math.max(45, distanceToEvaluate);
+    baseFare = Math.round(policy.airportBasePrice);
+    driverBataTotal = 0;
+  } else if (isOneWay) {
+    ratePerKm = policy.oneWayRatePerKm;
+    minKmApplied = policy.oneWayMinKm;
+    billableKm = Math.max(policy.oneWayMinKm, distanceToEvaluate);
+    baseFare = Math.round(billableKm * ratePerKm);
+    driverBataTotal = policy.oneWayDriverBata;
+  } else {
+    // Outstation Round Trip
+    ratePerKm = policy.outstationRatePerKm;
+    const quota = days * policy.outstationMinKmPerDay;
+    minKmApplied = quota;
+    billableKm = Math.max(quota, distanceToEvaluate);
+    baseFare = Math.round(billableKm * ratePerKm);
+    driverBataTotal = Math.round(days * policy.outstationDriverBataPerDay);
+  }
+
+  const tolls = Math.max(0, Math.round(Number(input.tollCharges) || 0));
+  const parking = Math.max(0, Math.round(Number(input.parkingCharges) || 0));
+  const night = Math.max(0, Math.round(Number(input.nightCharges) || 0));
+  const discount = Math.max(0, Math.round(Number(input.discount) || 0));
+
+  const subtotal = Math.max(0, Math.round(baseFare + driverBataTotal + tolls + parking + night - discount));
+  const gstTax = input.applyGst ? Math.round(subtotal * 0.05) : 0;
+  const totalFare = Math.max(0, subtotal + gstTax);
+
+  const advance = Math.max(0, Math.round(Number(input.advancePaid) || 0));
+  const balanceDue = Math.max(0, totalFare - advance);
+
+  let paymentStatus: 'Paid' | 'Partial' | 'Pending' = 'Pending';
+  if (totalFare > 0 && advance >= totalFare) {
+    paymentStatus = 'Paid';
+  } else if (advance > 0) {
+    paymentStatus = 'Partial';
+  }
+
+  return {
+    tripType,
+    ratePerKm,
+    minKmApplied,
+    billableKm,
+    baseFare,
+    driverBataTotal,
+    tollCharges: tolls,
+    parkingCharges: parking,
+    nightCharges: night,
+    subtotal,
+    gstTax,
+    totalFare,
+    advancePaid: advance,
+    balanceDue,
+    paymentStatus,
+  };
+};
+
+/**
+ * Route Location & Highway Toll Estimator for Western Maharashtra
+ */
+export const estimateLocationDetails = (
+  pickupLocation: string = '',
+  dropLocation: string = '',
+  tripType: string = 'Round Trip',
+  pickupTime: string = '07:00'
+) => {
+  const destination = dropLocation.toLowerCase();
+  let oneWayDistanceKm = 150;
+  let oneWayHighwayToll = 250;
+  let municipalParkingFee = 100;
+
+  if (destination.includes('lonavala') || destination.includes('khandala')) {
+    oneWayDistanceKm = 95;
+    oneWayHighwayToll = 320; // Mumbai-Pune Expressway Toll
+    municipalParkingFee = 100;
+  } else if (destination.includes('pune') || destination.includes('pcmc')) {
+    oneWayDistanceKm = 155;
+    oneWayHighwayToll = 430; // Full Expressway Toll
+    municipalParkingFee = 100;
+  } else if (destination.includes('shirdi') || destination.includes('kopargaon')) {
+    oneWayDistanceKm = 250;
+    oneWayHighwayToll = 450; // Samruddhi Mahamarg Toll
+    municipalParkingFee = 120;
+  } else if (destination.includes('mahabaleshwar') || destination.includes('panchgani')) {
+    oneWayDistanceKm = 265;
+    oneWayHighwayToll = 400; // NH-48 Pune-Satara Toll
+    municipalParkingFee = 150;
+  } else if (destination.includes('goa') || destination.includes('panaji')) {
+    oneWayDistanceKm = 590;
+    oneWayHighwayToll = 850; // NH-66 Coastal Toll
+    municipalParkingFee = 200;
+  } else if (destination.includes('nashik') || destination.includes('trimbak')) {
+    oneWayDistanceKm = 175;
+    oneWayHighwayToll = 350;
+    municipalParkingFee = 100;
+  }
+
+  const isRoundTrip = tripType.toLowerCase().includes('round');
+  const finalDistance = isRoundTrip ? oneWayDistanceKm * 2 : oneWayDistanceKm;
+  const finalToll = isRoundTrip ? oneWayHighwayToll * 2 : oneWayHighwayToll;
+
+  let nightSurcharge = 0;
+  if (pickupTime) {
+    const hour = parseInt(pickupTime.split(':')[0], 10);
+    if (!isNaN(hour) && (hour < 6 || hour >= 22)) {
+      nightSurcharge = KADJAI_PRICING_POLICY.nightAllowance;
+    }
+  }
+
+  return {
+    estKm: Math.round(finalDistance),
+    estToll: Math.round(finalToll),
+    estParking: Math.round(municipalParkingFee),
+    nightCharge: Math.round(nightSurcharge),
+  };
+};
+
+/**
+ * Sequential Booking Identifier Generator for Dispatch Audit Trail
+ */
+export const generateSequentialBookingRef = (existingBookings: Array<{ id: string }>): string => {
+  const currentYear = new Date().getFullYear();
+  const highestSequence = existingBookings.reduce((highest, item) => {
+    const match = item.id && item.id.match(/KAD-\d+-(\d+)/);
+    if (match) {
+      const seqNumber = parseInt(match[1], 10);
+      return seqNumber > highest ? seqNumber : highest;
+    }
+    return highest;
+  }, 100);
+
+  return `KAD-${currentYear}-${highestSequence + 1}`;
+};
