@@ -139,7 +139,7 @@ export default function OwnerLoginModal({ isOpen, onClose, onLoginSuccess }) {
               <span>Pass: <strong className="text-white">kadjai@2026</strong></span>
             </div>
             <div className="text-[10px] text-slate-500 pt-0.5">
-              Proprietor: Ramasre Bhagat | Developer: Yash Ramasre Bhagat
+              Kadjai Travels Operations Portal
             </div>
           </div>
 

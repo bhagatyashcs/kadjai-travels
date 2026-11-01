@@ -251,7 +251,7 @@ export function insertBooking(booking) {
     end_km: booking.endKm ? Number(booking.endKm) : null,
     total_km: booking.totalKm ? Number(booking.totalKm) : null,
     billable_km: Number(booking.billableKm) || Number(booking.estKm) || 300,
-    rate_per_km: Number(booking.ratePerKm) || 20.00,
+    rate_per_km: Number(booking.ratePerKm) || 25.00,
     base_fare: Number(booking.baseFare) || 0.00,
     driver_bata_total: Number(booking.driverBataTotal) || 0.00,
     toll_charges: Number(booking.tollCharges) || 0.00,

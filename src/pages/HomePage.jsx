@@ -97,7 +97,7 @@ export default function HomePage({
             <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
               <div className="px-3.5 py-1.5 rounded-xl bg-slate-900/85 border border-slate-800 text-slate-300 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span>Intercity Outstation: <strong className="text-white font-mono">₹20 / KM</strong></span>
+                <span>Intercity Outstation: <strong className="text-white font-mono">₹25 / KM</strong></span>
               </div>
               <div className="px-3.5 py-1.5 rounded-xl bg-slate-900/85 border border-slate-800 text-slate-300 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -105,7 +105,7 @@ export default function HomePage({
               </div>
               <div className="px-3.5 py-1.5 rounded-xl bg-slate-900/85 border border-slate-800 text-slate-300 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-amber-400" />
-                <span>Driver Bata: <strong className="text-white font-mono">₹400 / Day</strong></span>
+                <span>Driver Charge: <strong className="text-white font-mono">₹400 / Day</strong></span>
               </div>
             </div>
 
@@ -375,7 +375,7 @@ export default function HomePage({
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                 <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800">
                   <span className="text-[10px] text-slate-500 block uppercase font-semibold">Outstation Tariff</span>
-                  <span className="text-lg font-black text-amber-400 font-mono">₹20 / KM</span>
+                  <span className="text-lg font-black text-amber-400 font-mono">₹25 / KM</span>
                   <span className="text-[10px] text-slate-400 block mt-0.5">Min 300 KM / Day</span>
                 </div>
 
@@ -386,9 +386,9 @@ export default function HomePage({
                 </div>
 
                 <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 col-span-2 sm:col-span-1">
-                  <span className="text-[10px] text-slate-500 block uppercase font-semibold">Driver Allowance</span>
+                  <span className="text-[10px] text-slate-500 block uppercase font-semibold">Driver Charge</span>
                   <span className="text-lg font-black text-white font-mono">₹400 / Day</span>
-                  <span className="text-[10px] text-slate-400 block mt-0.5">Driver Bata included</span>
+                  <span className="text-[10px] text-slate-400 block mt-0.5">Driver Charge included</span>
                 </div>
               </div>
 
@@ -478,7 +478,7 @@ export default function HomePage({
             },
             {
               title: 'Transparent Fare Discussions',
-              desc: 'No hidden surge pricing. Outstation fares are strictly ₹20/km with ₹400 driver bata and mandatory Fastag tolls itemized clearly.',
+              desc: 'No hidden surge pricing. Outstation fares are strictly ₹25/km with ₹400 driver charge and mandatory Fastag tolls itemized clearly.',
               icon: DollarSign,
             },
             {
@@ -545,7 +545,7 @@ export default function HomePage({
               {
                 step: '02',
                 title: 'Discuss Route & Fare',
-                desc: 'Review the calculated fare (₹20/km outstation, ₹15/km local, plus mandatory Fastag tolls and driver bata).',
+                desc: 'Review the calculated fare (₹25/km outstation, ₹15/km local, plus mandatory Fastag tolls and driver charge).',
               },
               {
                 step: '03',

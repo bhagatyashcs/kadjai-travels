@@ -150,11 +150,9 @@ export default function AdminDashboard({
               Tourist Vehicle & Fleet Management System
             </h1>
             <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 mt-1">
-              <span>Proprietor: <strong className="text-slate-200">Ramasre Bhagat</strong></span>
+              <span>Dedicated Fleet: <strong className="text-amber-400">Maruti Suzuki Ertiga (MH 02 EE 4589)</strong></span>
               <span>•</span>
-              <span>Student Developer: <strong className="text-slate-200">Yash Ramasre Bhagat</strong></span>
-              <span>•</span>
-              <span>Single Fleet: <strong className="text-amber-400">Maruti Suzuki Ertiga (MH 02 EE 4589)</strong></span>
+              <span>Operations Hub: <strong className="text-slate-200">Mumbai & Maharashtra</strong></span>
             </div>
           </div>
 
@@ -244,7 +242,7 @@ export default function AdminDashboard({
               ₹{totalExpensesLogged.toLocaleString('en-IN')}
             </div>
             <div className="text-[11px] text-slate-400 mt-1">
-              Fuel, Fastag, Bata & Parking
+              Fuel, Fastag, Driver Charge & Parking
             </div>
           </div>
 
@@ -371,7 +369,7 @@ export default function AdminDashboard({
               <div className="space-y-1">
                 <span className="text-slate-400 block font-semibold">Total Direct Operating Expenses</span>
                 <span className="text-2xl font-black text-rose-400">₹{totalExpensesLogged.toLocaleString('en-IN')}</span>
-                <span className="text-[11px] text-slate-500 block">Fuel (CNG/Petrol), Highway Fastag, Driver Bata & Parking</span>
+                <span className="text-[11px] text-slate-500 block">Fuel (CNG/Petrol), Highway Fastag, Driver Charge & Parking</span>
               </div>
 
               <div className="space-y-1 bg-slate-950 p-4 rounded-xl border border-slate-800">
@@ -402,7 +400,7 @@ export default function AdminDashboard({
                   >
                     <option value="Fuel (CNG/Petrol)">Fuel (CNG / Petrol)</option>
                     <option value="Fastag Tolls">Fastag Tolls</option>
-                    <option value="Driver Bata">Driver Daily Bata</option>
+                    <option value="Driver Bata">Driver Charge</option>
                     <option value="Parking">Parking & Municipal Tax</option>
                     <option value="Maintenance">Vehicle Maintenance / Service</option>
                   </select>
@@ -731,7 +729,7 @@ export default function AdminDashboard({
                 <div>
                   <label className="block text-slate-400 font-medium mb-1">Vehicle Model</label>
                   <div className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-amber-400 font-bold">
-                    Maruti Suzuki Ertiga (₹20/km)
+                    Maruti Suzuki Ertiga (₹25/km)
                   </div>
                 </div>
               </div>
@@ -780,7 +778,7 @@ export default function AdminDashboard({
                   <span className="text-white">₹{fastQuote.baseFare.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between text-slate-400">
-                  <span>Driver Bata ({calcDays} Days @ ₹400/day):</span>
+                  <span>Driver Charge ({calcDays} Days @ ₹400/day):</span>
                   <span className="text-white">₹{fastQuote.driverBataTotal.toLocaleString('en-IN')}</span>
                 </div>
                 {Number(calcTolls) > 0 && (
@@ -825,10 +823,10 @@ export default function AdminDashboard({
                 <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-white text-sm">Intercity Outstation Duty</span>
-                    <span className="text-amber-400 font-bold font-mono text-sm">₹20 / KM</span>
+                    <span className="text-amber-400 font-bold font-mono text-sm">₹25 / KM</span>
                   </div>
                   <p className="text-slate-400 text-[11px]">
-                    Applicable for round-trip journeys across Maharashtra and Goa. Minimum daily billing: 300 KM/day + ₹400/day driver bata.
+                    Applicable for round-trip journeys across Maharashtra and Goa. Minimum daily billing: 300 KM/day + ₹400/day driver charge.
                   </p>
                 </div>
 

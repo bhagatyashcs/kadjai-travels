@@ -24,7 +24,7 @@ export default function ContactPage({ onSubmitBooking }) {
     },
     {
       q: 'What is the pricing rate for the Maruti Suzuki Ertiga?',
-      a: 'For Intercity Outstation journeys, the tariff is ₹20 / KM with a standard calendar day minimum of 300 KM per day, plus a driver allowance (Bata) of ₹400 / day. For Mumbai Local city usage, the tariff is ₹15 / KM (or our 8-hour / 80-KM city package at ₹2,200).',
+      a: 'For Intercity Outstation journeys, the tariff is ₹25 / KM with a standard calendar day minimum of 300 KM per day, plus a driver charge of ₹400 / day. For Mumbai Local city usage, the tariff is ₹15 / KM (or our 8-hour / 80-KM city package at ₹2,200).',
     },
     {
       q: 'Is there a luggage carrier on the roof for large bags?',

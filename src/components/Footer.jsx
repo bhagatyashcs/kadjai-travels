@@ -105,7 +105,7 @@ export default function Footer({ onNavigate }) {
           </ul>
           <div className="pt-2">
             <span className="text-[11px] text-slate-500">
-              Rates: Intercity ₹20/KM • Local ₹15/KM
+              Rates: Intercity ₹25/KM • Local ₹15/KM
             </span>
           </div>
         </div>
@@ -173,7 +173,12 @@ export default function Footer({ onNavigate }) {
       <div className="bg-slate-950/80 border-t border-slate-900/90 py-6 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
           <div>
-            © {new Date().getFullYear()} Kadjai Travels. All rights reserved. Registered tourist car services in Mumbai, Maharashtra.
+            <div>
+              © {new Date().getFullYear()} Kadjai Travels. All rights reserved. Registered tourist car services in Mumbai, Maharashtra.
+            </div>
+            <div className="text-[10px] text-slate-600 mt-1">
+              Proprietor: {COMPANY_INFO.proprietor}
+            </div>
           </div>
 
           <div className="flex items-center gap-4">
@@ -240,7 +245,7 @@ export default function Footer({ onNavigate }) {
                     <strong>Booking Confirmation:</strong> Journey requests submitted online are verified by the Kadjai Travels operations desk. Bookings are confirmed upon mutual agreement of dates, route, vehicle availability, and advance payment.
                   </p>
                   <p>
-                    <strong>Tariff & Billing:</strong> Intercity outstation journeys in Maruti Ertiga are calculated at ₹20 / KM with a standard minimum calendar day distance of 300 KM per day, plus ₹400 / day driver allowance (Bata). Local Mumbai city runs are calculated at ₹15 / KM.
+                    <strong>Tariff & Billing:</strong> Intercity outstation journeys in Maruti Ertiga are calculated at ₹25 / KM with a standard minimum calendar day distance of 300 KM per day, plus ₹400 / day driver charge. Local Mumbai city runs are calculated at ₹15 / KM.
                   </p>
                   <p>
                     <strong>Tolls & Parking:</strong> Fastag highway toll receipts and destination municipal parking are charged based on actuals or confirmed upfront with the passenger.

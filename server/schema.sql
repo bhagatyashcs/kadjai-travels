@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     end_km INTEGER,
     total_km INTEGER,
     billable_km INTEGER,
-    rate_per_km NUMERIC(10,2) NOT NULL DEFAULT 20.00,
+    rate_per_km NUMERIC(10,2) NOT NULL DEFAULT 25.00,
     base_fare NUMERIC(10,2) NOT NULL DEFAULT 0.00,
     driver_bata_total NUMERIC(10,2) NOT NULL DEFAULT 0.00,
     toll_charges NUMERIC(10,2) NOT NULL DEFAULT 0.00,
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS trip_expenses (
 CREATE TABLE IF NOT EXISTS pricing_rules (
     id VARCHAR(30) PRIMARY KEY,
     vehicle_model VARCHAR(50) NOT NULL,
-    outstation_rate_per_km NUMERIC(10,2) NOT NULL DEFAULT 20.00,
+    outstation_rate_per_km NUMERIC(10,2) NOT NULL DEFAULT 25.00,
     outstation_min_km_per_day INTEGER NOT NULL DEFAULT 300,
     driver_bata_per_day NUMERIC(10,2) NOT NULL DEFAULT 400.00,
     local_rate_per_km NUMERIC(10,2) NOT NULL DEFAULT 15.00,

@@ -5,7 +5,9 @@ import {
   MapPin, 
   User, 
   DollarSign, 
-  Check
+  Check,
+  Locate,
+  Navigation
 } from 'lucide-react';
 import { 
   POPULAR_ROUTES, 
@@ -46,7 +48,7 @@ export default function BookingModal({
     driverPhone: '',
     status: 'Confirmed',
     estKm: 300,
-    ratePerKm: 14,
+    ratePerKm: 25,
     driverBataPerDay: 400,
     tollCharges: 0,
     parkingCharges: 0,
@@ -95,7 +97,7 @@ export default function BookingModal({
         driverPhone: '',
         status: 'Confirmed',
         estKm: 300,
-        ratePerKm: 14,
+        ratePerKm: 25,
         driverBataPerDay: 400,
         tollCharges: 0,
         parkingCharges: 0,
@@ -153,6 +155,40 @@ export default function BookingModal({
   };
 
   // Dynamic location and toll/parking update
+  const [isLocatingGps, setIsLocatingGps] = useState(false);
+
+  const handleGpsPickup = () => {
+    if (typeof window === 'undefined' || !navigator.geolocation) return;
+    setIsLocatingGps(true);
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude, longitude } = pos.coords;
+        let name = '';
+        try {
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 3500);
+          const resp = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`,
+            { signal: ctrl.signal, headers: { 'Accept-Language': 'en' } }
+          );
+          clearTimeout(timer);
+          if (resp.ok) {
+            const data = await resp.json();
+            const addr = data.address || {};
+            const suburb = addr.suburb || addr.neighbourhood || addr.residential || addr.road;
+            const city = addr.city || addr.town || 'Mumbai';
+            if (suburb) name = `${suburb}, ${city}`;
+          }
+        } catch {}
+        if (!name) name = `Current GPS Location (${latitude.toFixed(3)}°N, ${longitude.toFixed(3)}°E)`;
+        handleLocationChange('pickupLocation', name);
+        setIsLocatingGps(false);
+      },
+      () => setIsLocatingGps(false),
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  };
+
   const handleLocationChange = (field, val) => {
     setFormData(prev => {
       const next = { ...prev, [field]: val };
@@ -303,7 +339,15 @@ export default function BookingModal({
               <div>
                 <label className="block text-slate-400 font-medium mb-1 flex items-center justify-between">
                   <span>Pickup Location & Address *</span>
-                  <span className="text-[10px] text-emerald-400">Doorstep Pickup</span>
+                  <button
+                    type="button"
+                    onClick={handleGpsPickup}
+                    disabled={isLocatingGps}
+                    className="text-[10px] text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold"
+                  >
+                    <Navigation className={`w-2.5 h-2.5 ${isLocatingGps ? 'animate-spin' : ''}`} />
+                    <span>{isLocatingGps ? 'Locating...' : 'Use Current GPS'}</span>
+                  </button>
                 </label>
                 <input
                   type="text"
@@ -466,7 +510,7 @@ export default function BookingModal({
                     setFormData(prev => ({
                       ...prev,
                       vehicleModelId: mId,
-                      ratePerKm: model?.ratePerKm || 14,
+                      ratePerKm: model?.ratePerKm || 25,
                       driverBataPerDay: model?.driverBataPerDay || 400,
                     }));
                   }}
@@ -622,7 +666,7 @@ export default function BookingModal({
                 <span className="text-sm font-bold text-white">{financials.billableKm} KM</span>
               </div>
               <div>
-                <span className="text-[11px] text-slate-400 block">Base + Driver Bata</span>
+                <span className="text-[11px] text-slate-400 block">Base + Driver Charge</span>
                 <span className="text-sm font-bold text-white">
                   ₹{(financials.baseFare + financials.driverBataTotal).toLocaleString('en-IN')}
                 </span>

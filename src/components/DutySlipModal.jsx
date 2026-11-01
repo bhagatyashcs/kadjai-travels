@@ -260,7 +260,7 @@ export default function DutySlipModal({
                     Base Distance / Package Rate
                   </td>
                   <td className="border border-slate-300 py-1.5 px-3 text-right font-mono text-slate-600">
-                    {billableDistance} KM @ ₹{booking.ratePerKm || 14}/KM
+                    {billableDistance} KM @ ₹{booking.ratePerKm || 25}/KM
                   </td>
                   <td className="border border-slate-300 py-1.5 px-3 text-right font-mono font-bold">
                     ₹{(booking.baseFare || 0).toLocaleString('en-IN')}
@@ -284,7 +284,7 @@ export default function DutySlipModal({
                 {Number(booking.driverBataTotal) > 0 && (
                   <tr>
                     <td className="border border-slate-300 py-1.5 px-3 font-medium">
-                      Driver Daily Allowance (Bata)
+                      Driver Charge
                     </td>
                     <td className="border border-slate-300 py-1.5 px-3 text-right font-mono text-slate-600">
                       {booking.daysCount || 1} Day(s) @ ₹{booking.driverBataPerDay || 400}/Day

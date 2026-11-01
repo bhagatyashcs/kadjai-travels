@@ -43,9 +43,9 @@ export default function ServicesPage({ onNavigate, onBookService }) {
         <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2 text-slate-300">
             <DollarSign className="w-4 h-4 text-amber-400 shrink-0" />
-            <span>Standard Pricing: <strong className="text-white">Intercity Outstation @ ₹20/KM</strong> • <strong className="text-white">Mumbai Local @ ₹15/KM</strong></span>
+            <span>Standard Pricing: <strong className="text-white">Intercity Outstation @ ₹25/KM</strong> • <strong className="text-white">Mumbai Local @ ₹15/KM</strong></span>
           </div>
-          <span className="text-amber-400 font-mono font-bold">Driver Bata: ₹400/day</span>
+          <span className="text-amber-400 font-mono font-bold">Driver Charge: ₹400/day</span>
         </div>
       </div>
 

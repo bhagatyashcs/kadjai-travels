@@ -597,11 +597,11 @@ export default function App() {
                 </span>
 
                 <h2 className="text-xl font-extrabold text-white mb-2">
-                  Proprietor & Dispatch Portal
+                  Operations & Dispatch Portal
                 </h2>
                 
                 <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                  This internal dashboard is restricted to Kadjai Travels proprietor (Ramasre Bhagat) and authorized fleet dispatchers. Please authenticate to manage active duties, duty slips, and customer trips.
+                  This internal dashboard is restricted to Kadjai Travels management and authorized fleet dispatchers. Please authenticate to manage active duties, duty slips, and customer trips.
                 </p>
 
                 <div className="space-y-3">

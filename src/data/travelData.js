@@ -5,7 +5,6 @@ export const COMPANY_INFO = {
   name: 'Kadjai Travels',
   legalName: 'Kadjai Travels Mumbai',
   proprietor: 'Ramasre Bhagat',
-  studentDeveloper: 'Yash Ramasre Bhagat',
   tagline: 'Your Journey. Our Commitment.',
   subtagline: 'Reliable travel and tourist car services for airport transfers, outstation journeys and memorable trips.',
   phone: '+91 8689804096',
@@ -27,9 +26,10 @@ export const VEHICLE_DETAILS = {
   luggageCapacity: '3-4 Medium/Large Bags + Secure Roof Luggage Rack',
   airConditioning: 'Chilled Dual AC (Front & Ceiling Vents for All Rows)',
   fuelTypes: 'Petrol + CNG / Petrol',
-  intercityRatePerKm: 20, // ₹20 / km for Outstation
+  intercityRatePerKm: 25, // ₹25 / km for Outstation
   localRatePerKm: 15,     // ₹15 / km for Mumbai Local
   driverBataPerDay: 400,  // ₹400 / day
+  driverChargePerDay: 400, // Driver charge alias
   minKmPerDayOutstation: 300,
   minKmLocalRental: 80,
   features: [
@@ -74,7 +74,7 @@ export const VEHICLE_DETAILS = {
 export const VEHICLE_MODELS = [
   {
     ...VEHICLE_DETAILS,
-    ratePerKm: 20,
+    ratePerKm: 25,
     minKmPerDay: 300,
     nightCharge: 300,
     hourlyPackage8Hr80Km: 2200,
@@ -113,7 +113,7 @@ export const SERVICES_LIST = [
       'Destination parking and municipal tourist entry fees',
       'State border permits (applicable only outside Maharashtra, e.g., Goa)',
     ],
-    rateInfo: '₹20 / KM (Minimum 300 KM / Day) + ₹400 / Day Driver Allowance (Bata)',
+    rateInfo: '₹25 / KM (Minimum 300 KM / Day) + ₹400 / Day Driver Charge',
     icon: 'Compass',
   },
   {
@@ -187,7 +187,7 @@ export const SERVICES_LIST = [
       'Temple trust VIP passes or pooja costs',
       'Highway Fastag tolls and hotel parking fees',
     ],
-    rateInfo: '₹20 / KM + ₹400 / Day Driver Allowance (Bata)',
+    rateInfo: '₹25 / KM + ₹400 / Day Driver Charge',
     icon: 'Sun',
   },
   {
@@ -203,9 +203,9 @@ export const SERVICES_LIST = [
     ],
     exclusions: [
       'State taxes (for interstate routes) and tolls',
-      'Driver room/food (standard driver bata covers this)',
+      'Driver room/food (standard driver charge covers this)',
     ],
-    rateInfo: '₹20 / KM + ₹400 / Day Driver Allowance (Bata)',
+    rateInfo: '₹25 / KM + ₹400 / Day Driver Charge',
     icon: 'Users',
   },
 ];

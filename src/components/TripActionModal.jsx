@@ -321,7 +321,7 @@ export default function TripActionModal({
 
               {finalCalculation.driverBataTotal > 0 && (
                 <div className="flex justify-between text-slate-400">
-                  <span>Driver Bata ({booking.daysCount} days):</span>
+                  <span>Driver Charge ({booking.daysCount} days):</span>
                   <span className="text-white">₹{finalCalculation.driverBataTotal.toLocaleString('en-IN')}</span>
                 </div>
               )}

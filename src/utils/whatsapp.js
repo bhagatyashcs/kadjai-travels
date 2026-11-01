@@ -30,7 +30,7 @@ export const openWhatsApp = (phone, text) => {
  */
 export const getCustomerConfirmationMessage = (booking) => {
   const driverChargeText = booking.driverBataTotal 
-    ? `• 👨‍✈️ Driver Allowance (Bata): ₹${Number(booking.driverBataTotal).toLocaleString('en-IN')} (${booking.daysCount || 1} day duty)\n`
+    ? `• 👨‍✈️ Driver Charge: ₹${Number(booking.driverBataTotal).toLocaleString('en-IN')} (${booking.daysCount || 1} day duty)\n`
     : '';
   const tollText = Number(booking.tollCharges) > 0 
     ? `• 🛣️ Highway Toll Charges: ₹${Number(booking.tollCharges).toLocaleString('en-IN')}\n`
@@ -87,7 +87,7 @@ export const getCustomerInquiryMessage = ({
   breakdown,
 }) => {
   const driverChargeLine = breakdown && breakdown.driverBataTotal 
-    ? `• Driver Daily Charges (${daysCount} days): ₹${Number(breakdown.driverBataTotal).toLocaleString('en-IN')}\n` 
+    ? `• Driver Charge (${daysCount} days): ₹${Number(breakdown.driverBataTotal).toLocaleString('en-IN')}\n` 
     : '';
   const tollLine = breakdown && Number(breakdown.tollCharges) > 0 
     ? `• Highway Toll Charges: ₹${Number(breakdown.tollCharges).toLocaleString('en-IN')}\n` 
@@ -112,7 +112,7 @@ ${returnDate ? `🔄 *Return Date:* ${returnDate} (${daysCount} Days)\n` : ''}�
 📞 *Phone:* ${phone || ''}
 
 💵 *ESTIMATED FARE BREAKDOWN:*
-• Car Fare (${breakdown?.billableKm || 0} KM @ ₹${breakdown?.ratePerKm || 20}/km): ₹${Number(breakdown?.baseFare || 0).toLocaleString('en-IN')}
+• Car Fare (${breakdown?.billableKm || 0} KM @ ₹${breakdown?.ratePerKm || 25}/km): ₹${Number(breakdown?.baseFare || 0).toLocaleString('en-IN')}
 ${driverChargeLine}${tollLine}${parkingLine}${nightLine}━━━━━━━━━━━━━━━━━━━━
 💰 *TOTAL ESTIMATED FARE:* ₹${Number(breakdown?.totalFare || 0).toLocaleString('en-IN')}
 
@@ -166,7 +166,7 @@ Vehicle: ${booking.vehiclePlateNumber || 'Tourist Cab'}
 
 💵 *ITEMIZED FARE BREAKDOWN:*
 • Base Vehicle Fare: ₹${Number(booking.baseFare || 0).toLocaleString('en-IN')}
-${booking.driverBataTotal ? `• Driver Daily Charges: ₹${Number(booking.driverBataTotal).toLocaleString('en-IN')} (${booking.daysCount || 1} days)\n` : ''}
+${booking.driverBataTotal ? `• Driver Charge: ₹${Number(booking.driverBataTotal).toLocaleString('en-IN')} (${booking.daysCount || 1} days)\n` : ''}
 ${booking.tollCharges ? `• Highway Toll Charges: ₹${Number(booking.tollCharges).toLocaleString('en-IN')}\n` : ''}
 ${booking.parkingCharges ? `• Parking / Airport Taxes: ₹${Number(booking.parkingCharges).toLocaleString('en-IN')}\n` : ''}
 ${booking.nightCharges ? `• Night Driving Allowance: ₹${Number(booking.nightCharges).toLocaleString('en-IN')}\n` : ''}

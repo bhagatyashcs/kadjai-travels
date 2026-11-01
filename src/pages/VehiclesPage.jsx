@@ -165,7 +165,7 @@ export default function VehiclesPage({ onNavigate }) {
                   <DollarSign className="w-4 h-4 text-amber-400" />
                   <span>Intercity Tariff:</span>
                 </span>
-                <span className="font-bold text-amber-400 font-mono">₹20 / KM (300 km min/day)</span>
+                <span className="font-bold text-amber-400 font-mono">₹25 / KM (300 km min/day)</span>
               </div>
 
               <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800">
@@ -179,9 +179,9 @@ export default function VehiclesPage({ onNavigate }) {
               <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800">
                 <span className="text-slate-400 flex items-center gap-2">
                   <Users className="w-4 h-4 text-amber-400" />
-                  <span>Driver Allowance:</span>
+                  <span>Driver Charge:</span>
                 </span>
-                <span className="font-bold text-white font-mono">₹400 / Day (Bata)</span>
+                <span className="font-bold text-white font-mono">₹400 / Day</span>
               </div>
             </div>
           </div>

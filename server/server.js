@@ -232,7 +232,7 @@ app.post('/api/bookings', bookingLimiter, (req, res) => {
       notes: data.notes ? String(data.notes).trim().slice(0, 500) : null,
       estKm: Math.max(0, Number(data.estKm) || 300),
       billableKm: Math.max(0, Number(data.billableKm) || Number(data.estKm) || 300),
-      ratePerKm: Number(data.ratePerKm) || 20.00,
+      ratePerKm: Number(data.ratePerKm) || 25.00,
       baseFare: Math.max(0, Number(data.baseFare) || 0),
       driverBataTotal: Math.max(0, Number(data.driverBataTotal) || 0),
       tollCharges: Math.max(0, Number(data.tollCharges) || 0),

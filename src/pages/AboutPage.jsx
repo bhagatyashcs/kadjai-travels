@@ -51,7 +51,7 @@ export default function AboutPage({ onNavigate, onOpenTrackBooking }) {
 
           <div className="grid grid-cols-2 gap-4 pt-2">
             <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
-              <span className="text-amber-400 font-mono font-black text-xl block">₹20 / KM</span>
+              <span className="text-amber-400 font-mono font-black text-xl block">₹25 / KM</span>
               <span className="text-slate-400 text-xs font-medium">Intercity Outstation Tariff</span>
             </div>
             <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
@@ -142,12 +142,12 @@ export default function AboutPage({ onNavigate, onOpenTrackBooking }) {
             <span className="text-white font-bold">{COMPANY_INFO.name}</span>
           </div>
           <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800/80">
-            <span className="text-slate-500 block text-[10px] uppercase font-semibold">Proprietor</span>
-            <span className="text-white font-bold">{COMPANY_INFO.proprietor}</span>
+            <span className="text-slate-500 block text-[10px] uppercase font-semibold">Fleet Model</span>
+            <span className="text-white font-bold">Maruti Suzuki Ertiga (6+1 AC)</span>
           </div>
           <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800/80">
-            <span className="text-slate-500 block text-[10px] uppercase font-semibold">Student Developer & Architect</span>
-            <span className="text-amber-400 font-bold">{COMPANY_INFO.studentDeveloper}</span>
+            <span className="text-slate-500 block text-[10px] uppercase font-semibold">Operating Regions</span>
+            <span className="text-white font-bold">Mumbai, Maharashtra & Goa</span>
           </div>
           <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800/80">
             <span className="text-slate-500 block text-[10px] uppercase font-semibold">Base Location</span>
