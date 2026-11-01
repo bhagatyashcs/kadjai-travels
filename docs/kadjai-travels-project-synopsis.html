@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Synopsis - Kadjai Travels</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.42;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      background: #e2e8f0;
+    }
+    .page {
+      background: #fff;
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      padding: 22mm 24mm 20mm 24mm;
+      margin: 15px auto;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      page-break-after: always;
+    }
+    .header {
+      text-align: center;
+      font-weight: bold;
+      font-size: 11pt;
+      letter-spacing: 0.3px;
+      margin-bottom: 20px;
+    }
+    .content {
+      flex: 1;
+    }
+    .footer {
+      font-size: 10.5pt;
+      color: #000;
+      font-weight: 500;
+      padding-top: 15px;
+    }
+    .sec-title {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+    .sec-title:first-child {
+      margin-top: 0;
+    }
+    .sub-sec-title {
+      font-size: 10.5pt;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+    p {
+      margin: 5px 0 9px 0;
+      text-align: justify;
+    }
+    ol {
+      margin: 4px 0 10px 0;
+      padding-left: 22px;
+    }
+    ol li {
+      margin-bottom: 3.5px;
+    }
+    .sub-list {
+      margin: 4px 0 8px 0;
+      padding-left: 0;
+      list-style-type: none;
+    }
+    .sub-list li {
+      margin-bottom: 3px;
+      padding-left: 12px;
+      text-indent: -12px;
+    }
+    .sub-list li:before {
+      content: "- ";
+    }
+    .stakeholder-item {
+      margin-bottom: 12px;
+    }
+    .stakeholder-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+    .scope-item {
+      margin-bottom: 12px;
+    }
+    .scope-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+    @media print {
+      body {
+        background: none;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <div class="sec-title">1.Project Title: Kadjai Travels - Tourist Vehicle & Customer Trip Management System</div>
+
+      <div class="sec-title">2.Introduction</div>
+      <p>
+        Kadjai Travels is a modern, enterprise-grade tourist vehicle and customer trip management web platform engineered to modernize tourist transport, intercity cab operations, and private vehicle charter services. Traditional regional travel desks and tourist cab operators operate almost entirely on manual paper booking registers, handwritten cost estimates, unrecorded odometer logs, and post-trip Fastag toll disputes. This leads to customer anxiety over trip pricing, disputed return mileage allowances, lack of driver arrival visibility, and lost customer retention.
+      </p>
+      <p>
+        Kadjai Travels is a web-based application designed to establish an end-to-end digital lifecycle for tourist transport operations, bridging the communication and operational gap between passengers, commercial drivers, and travel proprietors. The platform enables travelers to estimate accurate trip fares, submit booking enquiries, and track active journey status in real time.
+      </p>
+      <p>
+        The platform features an automated Multi-Package Fare Engine supporting Outstation Round Trips (with a daily 300 km calendar quota), Outstation One-Way drops, Local City Rentals (8h/80km packages), and Chhatrapati Shivaji Maharaj International Airport (CSMIA) transfers. The system integrates Uber-style live GPS geolocation and forward-geocoding, allowing users to lock any doorstep pickup and destination location across Maharashtra and India.
+      </p>
+      <p>
+        The application is developed using React 18 and Tailwind CSS for the frontend, Node.js and Express for the REST API backend, SQLite configured with Write-Ahead Logging (WAL) for relational data persistence, and stateless JWT token authentication. The system aims to provide upfront pricing transparency, streamline fleet dispatching, and provide Zero-Login live vehicle tracking for travelers.
+      </p>
+
+      <div class="sec-title">3.Objectives</div>
+      <p>The main objectives of the project are:</p>
+      <ol>
+        <li>To develop a user-friendly web application for tourist vehicle charter and intercity cab bookings.</li>
+        <li>To allow users to lock pickup and destination locations using live GPS geolocation and geocoding.</li>
+        <li>To dynamically calculate driving road distances and automatically categorize trip types.</li>
+        <li>To provide upfront, decimal-safe fare estimation based on verified commercial tariffs (₹25/km).</li>
+        <li>To maintain pricing transparency by displaying itemized driver charges, Fastag tolls, and parking fees.</li>
+        <li>To provide a Zero-Login live vehicle tracking portal using booking reference ID and contact phone number.</li>
+        <li>To provide secure role-based authentication for the fleet proprietor to manage reservations and fleet dispatch.</li>
+        <li>To maintain real-time fleet availability for the dedicated Maruti Suzuki Ertiga (6+1 AC Luxury) vehicles.</li>
+      </ol>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <ol start="9">
+        <li>To record opening and closing odometer readings for genuine distance auditing and automated billing.</li>
+        <li>To generate and print standardized, official A4 duty slips for drivers and corporate passengers.</li>
+      </ol>
+
+      <div class="sec-title">4. Stakeholders</div>
+      <p>The main stakeholders of the project are:</p>
+
+      <div class="stakeholder-item">
+        <strong>1. End Users (Travelers / Passengers):</strong>
+        Tourists, families, and business travelers who use the platform to calculate upfront fare estimates, request bookings, track live vehicle status via booking reference ID, and download verified duty slips.
+      </div>
+
+      <div class="stakeholder-item">
+        <strong>2. Fleet Drivers / Field Staff:</strong>
+        Professional chauffeurs operating tourist vehicles who receive trip dispatch assignments, report physical opening and closing odometer readings, and receive verified daily duty allowances.
+      </div>
+
+      <div class="stakeholder-item">
+        <strong>3. Fleet Owner / Client (Mr. Ramasre Bhagat):</strong>
+        The travel agency proprietor (Kadjai Travels) who supervises daily operations, assigns vehicles and drivers, monitors gross revenue and operating expenses, and approves completed trip settlements.
+      </div>
+
+      <div class="stakeholder-item">
+        <strong>4. System Administrator:</strong>
+        The administrative user responsible for managing user roles, configuring tariff parameters, auditing system logs, and maintaining database integrity and security.
+      </div>
+
+      <div class="stakeholder-item">
+        <strong>5. Technical Team & Project Developers:</strong>
+        Developers responsible for designing domain models, implementing REST endpoints, configuring SQLite schemas, building responsive UI components, and maintaining system uptime.
+      </div>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <div class="sec-title">5.Expected Modules and Sub-modules</div>
+
+      <div class="sub-sec-title">5.1 Public Enquiry & Trip Booking Wizard Module</div>
+      <p>This module provides an intuitive 3-step online reservation form for prospective travelers.</p>
+      <ul class="sub-list">
+        <li>Multi-step booking wizard (Journey Details, Contact Details, Review & Submit)</li>
+        <li>Trip package selection (Round Trip Outstation, One-Way Drop, Local City Rental, Airport Transfer)</li>
+        <li>Pickup date, return date, and departure time scheduling</li>
+        <li>Passenger count and roof luggage carrier requirement selection</li>
+        <li>Lead passenger details capture (Full Name, 10-digit mobile number)</li>
+        <li>Special travel notes and customer route preferences logging</li>
+        <li>Instant WhatsApp dispatch inquiry integration with pre-formatted trip summary</li>
+      </ul>
+
+      <div class="sub-sec-title">5.2 Geolocation & Route Calculation Module</div>
+      <p>This module determines spatial coordinates and computes accurate highway and urban driving distances.</p>
+      <ul class="sub-list">
+        <li>Live GPS location locking using HTML5 Geolocation API with high accuracy</li>
+        <li>Reverse geocoding of satellite coordinates to readable suburb and city names</li>
+        <li>Forward geocoding via OpenStreetMap Nominatim for any village, town, or address in India</li>
+        <li>Offline hub database of 70+ Maharashtra destinations and MMR suburbs for 0ms resolution</li>
+        <li>Typeahead autocomplete suggestions for popular tourist and pilgrimage hubs</li>
+        <li>Haversine spherical distance calculation with highway winding curvature factors</li>
+        <li>Live route status indicators with automatic trip category detection</li>
+      </ul>
+
+      <div class="sub-sec-title">5.3 Dynamic Fare Estimation Engine Module</div>
+      <p>This module automates verified, decimal-safe tariff calculations across multiple travel packages.</p>
+      <ul class="sub-list">
+        <li>Standard intercity rate enforcement at ₹25/KM for Maruti Suzuki Ertiga</li>
+        <li>Multi-day round trip minimum quota enforcement (300 KM/day minimum billing)</li>
+      </ul>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 4 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <ul class="sub-list">
+        <li>Daily driver duty allowance calculation (₹400/day driver charge)</li>
+        <li>Fixed local city rental packages (8 Hours / 80 KM @ ₹2,200; 12 Hours / 120 KM @ ₹3,200)</li>
+        <li>Flat CSMIA airport transfer tariff calculation (₹1,800 base + parking + Sea Link toll)</li>
+        <li>Dynamic Fastag highway toll calculation based on specific expressway rates</li>
+        <li>Municipal tourist entry tax and destination parking fee estimation</li>
+        <li>Night driving allowance computation for journeys between 10:00 PM and 06:00 AM (₹300)</li>
+        <li>Advance deposit tracking and outstanding balance calculation</li>
+        <li>Zero surge pricing guarantee and transparent itemized cost presentation</li>
+      </ul>
+
+      <p style="font-size: 9.5pt; color: #444; margin-top: 8px;">
+        Fare estimates are based on standardized commercial tariffs. Final booking confirmation and vehicle allocation are subject to operational dispatch approval by Kadjai Travels.
+      </p>
+
+      <div class="sub-sec-title">5.4 Zero-Login Live Vehicle Tracker Module</div>
+      <p>This module empowers passengers to track real-time trip status without mandatory account creation.</p>
+      <ul class="sub-list">
+        <li>Collision-resistant Booking Reference ID lookup (e.g., KT-2026-XXXX)</li>
+        <li>Two-factor validation requiring matching customer mobile number for data privacy</li>
+        <li>Visual 4-stage lifecycle progress stepper (Enquiry Received, Confirmed, In Progress, Completed)</li>
+        <li>Allocated vehicle details display (Model, Registration Plate Number)</li>
+        <li>Assigned commercial driver credentials and direct contact call shortcut</li>
+        <li>Digital booking voucher overview with route and payment status</li>
+      </ul>
+
+      <div class="sub-sec-title">5.5 Vehicle Fleet & Maintenance Ledger Module</div>
+      <p>This module maintains complete records and readiness tracking for the tourist vehicle fleet.</p>
+      <ul class="sub-list">
+        <li>Vehicle inventory cataloging (Maruti Suzuki Ertiga 6+1 AC Luxury)</li>
+        <li>Commercial license plate, chassis, and manufacturing year tracking</li>
+        <li>Current physical odometer reading recording</li>
+        <li>Operational readiness flag (Available, On Duty, Maintenance, Reserved)</li>
+      </ul>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 5 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <ul class="sub-list">
+        <li>Commercial insurance, tourist permit, and fitness certificate validity monitoring</li>
+        <li>Routine vehicle maintenance logs and service history tracking</li>
+      </ul>
+
+      <div class="sub-sec-title">5.6 Driver Management & Duty Roster Module</div>
+      <p>This module manages commercial driver profiles and operational road duty assignments.</p>
+      <ul class="sub-list">
+        <li>Driver profile management (Full Name, Contact Number, Emergency Contact)</li>
+        <li>Commercial driver license number and badge verification</li>
+        <li>Driver duty status synchronization (Available, Assigned, On Leave)</li>
+        <li>Driver allocation to confirmed bookings with vehicle pairing</li>
+        <li>Daily driver allowance and duty charge disbursement tracking</li>
+      </ul>
+
+      <div class="sub-sec-title">5.7 Automated Duty Slip & Odometer Billing Module</div>
+      <p>This module automates the generation of official travel records and closing settlement billing.</p>
+      <ul class="sub-list">
+        <li>Opening vehicle odometer reading capture at departure before vehicle roll-out</li>
+        <li>Closing vehicle odometer reading capture upon passenger drop-off</li>
+        <li>Automated billable distance calculation (Max of actual kilometers vs daily minimum quota)</li>
+        <li>En-route Fastag toll receipts and municipal parking charges aggregation</li>
+        <li>Standardized printable A4 duty slip generation with company header and terms</li>
+        <li>Payment settlement recording (Cash, UPI QR, Bank Transfer)</li>
+      </ul>
+
+      <div class="sub-sec-title">5.8 Fleet Command Center & Live Analytics Module</div>
+      <p>This module provides an executive management dashboard for the travel business proprietor.</p>
+      <ul class="sub-list">
+        <li>Display of 5 core fleet operational KPIs (Total Bookings, Active Trips, Fleet Readiness, Revenue, Pending Slips)</li>
+        <li>Interactive booking queue management with search, status filtering, and editing tools</li>
+        <li>Trip expense tracking (Fuel costs, Fastag toll receipts, Driver allowances)</li>
+        <li>Net operating profit and commercial margin computation per trip</li>
+        <li>Duty slip digital archive and historical trip review</li>
+      </ul>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 6 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <div class="sub-sec-title">5.9 Database Management Module</div>
+      <p>This module stores and manages relational application data using SQLite with ACID safety.</p>
+      <ul class="sub-list">
+        <li>Relational database schema management using SQLite 3 (better-sqlite3)</li>
+        <li>Foreign-key enforced tables: Users, Vehicles, Bookings, Duty Slips, and Route Tariffs</li>
+        <li>Write-Ahead Logging (WAL) configuration for high-performance concurrent reads</li>
+        <li>Atomic database transactions for status updates and duty slip calculations</li>
+        <li>Automated demonstration data seeding and backup recovery</li>
+      </ul>
+
+      <div class="sec-title">6. Hardware and Software Requirements</div>
+
+      <div class="sub-sec-title">6.1 Hardware Requirements</div>
+      <p>The following hardware is required to develop, host, and run the Kadjai Travels TVMS application:</p>
+      <ol>
+        <li><strong>Processor (CPU):</strong> Dual Core Intel Core i3 / AMD Ryzen 3 (2.0 GHz) minimum; Quad Core Intel Core i5 / AMD Ryzen 5 recommended.</li>
+        <li><strong>Memory (RAM):</strong> Minimum 4 GB DDR4 RAM for dispatch terminals; 8 GB – 16 GB recommended for server execution.</li>
+        <li><strong>Hard Disk / Storage:</strong> At least 10 GB of available storage space (128 GB SATA SSD minimum).</li>
+        <li><strong>Input Devices:</strong> Standard keyboard, mouse, and smartphone touchscreen.</li>
+        <li><strong>Display & Camera:</strong> Minimum 1366 &times; 768 standard desktop / tablet resolution; smartphone camera and GPS sensor for mobile location detection.</li>
+        <li><strong>Network Connectivity:</strong> Broadband internet connection (minimum 5 Mbps; 25 Mbps+ recommended) for geocoding API, map routing, and web service access.</li>
+      </ol>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 7 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <div class="sub-sec-title">6.2 Software Requirements</div>
+      <p>The following software and technologies are used to develop the Kadjai Travels TVMS application:</p>
+      <ol>
+        <li><strong>Operating System:</strong> Microsoft Windows 11 / 10 Pro, Ubuntu Linux 22.04 LTS, or macOS.</li>
+        <li><strong>Frontend Engine:</strong> React 18 Single Page Application with JSX, Hooks, and ES Modules.</li>
+        <li><strong>Build Tool & Bundler:</strong> Vite 5/8 delivering fast Hot Module Replacement (HMR) and optimized tree-shaking.</li>
+        <li><strong>Styling & Design System:</strong> Tailwind CSS with responsive mobile-first typography and custom color tokens.</li>
+        <li><strong>Backend Runtime:</strong> Node.js 20 LTS (Long Term Support) runtime environment.</li>
+        <li><strong>Backend Framework:</strong> Express.js 4/5 Web Application Framework for building robust REST API endpoints.</li>
+        <li><strong>Security & Authentication:</strong> Stateless JSON Web Token (jsonwebtoken) and BCrypt.js salted password hashing.</li>
+        <li><strong>Database Tier:</strong> SQLite 3 Relational Database Engine with better-sqlite3 driver configured with Write-Ahead Logging (WAL).</li>
+        <li><strong>External Geocoding API:</strong> OpenStreetMap Nominatim API for forward and reverse geocoding of pickup and drop locations.</li>
+        <li><strong>Version Control:</strong> Git and GitHub for source code management and collaborative version tracking.</li>
+        <li><strong>Deployment Platforms:</strong> Render for Node.js backend hosting and Vercel Edge CDN for frontend distribution.</li>
+      </ol>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 8 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <div class="sec-title">7. Similar Software Study / Background Study</div>
+      <p><strong>Commercial Cab Aggregators (Ola / Uber Outstation)</strong></p>
+      <p>
+        Commercial aggregators like Ola and Uber offer intercity outstation cabs and local rentals through mobile applications, operating on commission-based marketplace models with algorithmic driver dispatch.
+      </p>
+
+      <p><strong>Similarities with Kadjai Travels:</strong></p>
+      <ul class="sub-list">
+        <li>Both systems provide online intercity outstation and local city charter bookings.</li>
+        <li>Both platforms calculate trip fares based on pickup and destination geographic parameters.</li>
+        <li>Both support multiple trip formats, including round trips, one-way drops, and airport transfers.</li>
+        <li>Both provide trip reference codes for customers to follow journey status.</li>
+      </ul>
+
+      <p><strong>Differences:</strong></p>
+      <ul class="sub-list">
+        <li>Kadjai Travels is developed as a custom web-based academic and commercial fleet management project.</li>
+        <li>Kadjai Travels enforces upfront transparent pricing (₹25/KM) with zero dynamic surge pricing.</li>
+        <li>Kadjai Travels manages a dedicated, verified fleet of Maruti Suzuki Ertiga (6+1 AC Luxury) vehicles rather than unvetted third-party market aggregations.</li>
+        <li>Kadjai Travels provides Zero-Login live vehicle tracking by booking reference ID and phone number, eliminating mandatory app installation and account creation friction.</li>
+        <li>Kadjai Travels integrates a full back-office Tourist Vehicle Management System (TVMS) with opening/closing odometer logging and automated printable A4 duty slips.</li>
+      </ul>
+
+      <p>
+        Kadjai Travels operates as a direct-to-proprietor digital platform with zero third-party commission deductions, designed specifically for regional tourist fleet enterprises.
+      </p>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 9 ==================== -->
+  <div class="page">
+    <div class="header">
+      SHETH L.U.J AND SIR M.V. COLLEGE OF ARTS, SCIENCE AND COMMERCE
+    </div>
+    <div class="content">
+      <div class="sec-title">8.Limitations in Relation to the Proposed Project:</div>
+      <ol>
+        <li>Primary Dedicated Fleet Scope: The operational implementation is optimized for the business's verified tourist vehicle fleet (featuring the 6+1 AC Luxury Maruti Suzuki Ertiga) and does not manage large multi-hub bus depots.</li>
+        <li>Payment Processing Architecture: Payment settlement registers verified transaction confirmation modes (Cash, UPI QR, and Card) without integrating a third-party payment gateway.</li>
+        <li>Cellular SMS & GPS Simulation: Real-time journey milestones stream via zero-login web sockets and responsive URLs; live coordinates are simulated via discrete route checkpoints without demanding proprietary in-vehicle OBD GPS black-boxes.</li>
+        <li>Client-side GPS geolocation accuracy is subject to device hardware precision and user browser location permission approvals.</li>
+        <li>Forward-geocoding resolution for arbitrary rural locations relies on external OpenStreetMap Nominatim network availability and rate limits.</li>
+        <li>Opening and closing odometer readings require physical driver reporting and administrative verification upon duty slip generation.</li>
+      </ol>
+
+      <div class="sec-title">9.Future Scope</div>
+      <p>The project can be enhanced in the following ways:</p>
+
+      <div class="scope-item">
+        <strong>1. Automated WhatsApp Notifications:</strong>
+        Integrate the WhatsApp Business Cloud API to automatically dispatch live booking confirmations, driver contact cards, and downloadable PDF duty slips directly to customer mobile phones.
+      </div>
+
+      <div class="scope-item">
+        <strong>2. Direct Fastag RFID Gateway:</strong>
+        Connect directly to NETC Fastag APIs to automatically pull live highway toll plaza transaction logs into the trip duty slip in real time.
+      </div>
+
+      <div class="scope-item">
+        <strong>3. Driver Native Mobile Application:</strong>
+        Develop a dedicated React Native mobile app for commercial drivers featuring 1-tap odometer photo capture, offline GPS checkpoint logging, and digital customer signature pads.
+      </div>
+
+      <div class="scope-item">
+        <strong>4. Multi-Vehicle Fleet Scheduling:</strong>
+        Extend the database model to support multi-vehicle fleet operations with automated preventive maintenance schedules, tyre rotation logs, and insurance renewal alerts.
+      </div>
+
+      <div class="scope-item">
+        <strong>5. Integrated Payment Gateway:</strong>
+        Integrate UPI Deep-Linking (Razorpay / Cashfree) for instant customer payment settlements and digital receipt dispatch.
+      </div>
+    </div>
+    <div class="footer">
+      Yash Bhagat T072
+    </div>
+  </div>
+
+</body>
+</html>

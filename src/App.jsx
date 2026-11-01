@@ -620,10 +620,6 @@ export default function App() {
                     Return to Public Website
                   </button>
                 </div>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 text-[11px] text-slate-500">
-                  <p className="font-mono text-slate-400">Demo User: <span className="text-amber-400">owner</span> | Password: <span className="text-amber-400">kadjai@2026</span></p>
-                </div>
               </div>
             </div>
           )

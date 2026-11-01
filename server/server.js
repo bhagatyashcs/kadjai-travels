@@ -32,6 +32,7 @@ import {
   registerInitialOwner,
   generateCollisionResistantBookingId,
 } from './db.js';
+import { seedDemoData } from './seed.js';
 import {
   verifyPassword,
   createSessionToken,
@@ -57,8 +58,17 @@ try {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Initialize Database on startup
-getDb();
+// Initialize Database and baseline data on startup
+try {
+  const db = getDb();
+  const vehicleCount = db.prepare('SELECT COUNT(*) as count FROM vehicles').get().count;
+  if (vehicleCount === 0) {
+    seedDemoData(db);
+    console.log('[SERVER] Database populated with operational vehicles, driver, and rates.');
+  }
+} catch (err) {
+  console.warn('[SERVER] Initial database startup check notice:', err.message);
+}
 
 // ============================================================================
 // SECURITY MIDDLEWARES & RATE LIMITING

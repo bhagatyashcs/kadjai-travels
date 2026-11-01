@@ -7,8 +7,7 @@ import {
   EyeOff, 
   AlertCircle, 
   ArrowRight,
-  X,
-  KeyRound
+  X
 } from 'lucide-react';
 import { loginOwner } from '../utils/apiClient';
 
@@ -20,11 +19,6 @@ export default function OwnerLoginModal({ isOpen, onClose, onLoginSuccess }) {
   const [error, setError] = useState('');
 
   if (!isOpen) return null;
-
-  const handleFillDemo = () => {
-    setIdentifier('owner');
-    setPassword('kadjai@2026');
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,30 +110,6 @@ export default function OwnerLoginModal({ isOpen, onClose, onLoginSuccess }) {
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
-            </div>
-          </div>
-
-          {/* Academic & Demonstration Credentials Hint */}
-          <div className="bg-slate-950 p-3.5 rounded-2xl border border-slate-800/80 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-amber-400 uppercase font-bold block">
-                Development / College Evaluation
-              </span>
-              <button
-                type="button"
-                onClick={handleFillDemo}
-                className="text-[10px] text-amber-400 hover:text-amber-300 underline font-semibold flex items-center gap-1"
-              >
-                <KeyRound className="w-3 h-3" />
-                <span>Fill Demo Credentials</span>
-              </button>
-            </div>
-            <div className="text-[11px] text-slate-300 font-mono flex items-center justify-between">
-              <span>User: <strong className="text-white">owner</strong></span>
-              <span>Pass: <strong className="text-white">kadjai@2026</strong></span>
-            </div>
-            <div className="text-[10px] text-slate-500 pt-0.5">
-              Kadjai Travels Operations Portal
             </div>
           </div>
 

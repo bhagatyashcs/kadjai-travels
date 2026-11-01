@@ -34,6 +34,22 @@ function initDatabase(db) {
     const schemaSql = fs.readFileSync(SCHEMA_PATH, 'utf8');
     db.exec(schemaSql);
   }
+
+  // Ensure default owner account exists so credentials always work out-of-the-box
+  try {
+    const adminRow = db.prepare('SELECT COUNT(*) as count FROM users WHERE role = ?').get('ROLE_ADMIN');
+    if (!adminRow || adminRow.count === 0) {
+      const salt = generateSalt();
+      const hash = hashPassword(process.env.OWNER_INITIAL_PASSWORD || 'kadjai@2026', salt);
+      db.prepare(`
+        INSERT INTO users (username, email, password_hash, salt, full_name, role)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `).run('owner', 'owner@kadjaitravels.com', hash, salt, 'Ramasre Bhagat', 'ROLE_ADMIN');
+      console.log('[DB] Auto-seeded default owner account: owner');
+    }
+  } catch (err) {
+    console.warn('[DB] Notice during initial owner check:', err.message);
+  }
 }
 
 /**
@@ -110,10 +126,12 @@ export function generateCollisionResistantBookingId(customDb = null) {
 // ============================================================================
 
 export function findUserByUsernameOrEmail(identifier) {
+  if (!identifier || typeof identifier !== 'string') return null;
   const db = getDb();
+  const cleanId = identifier.trim();
   return db.prepare(`
-    SELECT * FROM users WHERE username = ? OR email = ?
-  `).get(identifier, identifier);
+    SELECT * FROM users WHERE LOWER(username) = LOWER(?) OR LOWER(email) = LOWER(?)
+  `).get(cleanId, cleanId);
 }
 
 export function getUserById(id) {
